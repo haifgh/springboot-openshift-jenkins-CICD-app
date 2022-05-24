@@ -27,7 +27,7 @@ pipeline {
      		 steps{
               // If you are using Windows then you should use "bat" step
               // Since unit testing is out of the scope we skip them
-      	bat "mvn deploy:deploy-file -DgroupId=com.example -DartifactId=spring-example -Dversion=0.0.1-SNAPSHOT -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=C:\Program Files (x86)\Jenkins\workspace\mayTest\targetspring-example-0.0.1-SNAPSHOT.jar"
+      	bat "mvn deploy:deploy-file -DgroupId=com.example -DartifactId=spring-example -Dversion=0.0.1-SNAPSHOT -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=C:/Program Files (x86)/Jenkins/workspace/mayTest/targetspring-example-0.0.1-SNAPSHOT.jar"
                 }
             }
 	stage('Email Notifications'){
