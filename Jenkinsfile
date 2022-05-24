@@ -23,6 +23,24 @@ pipeline {
       steps {
         bat  "mvn install"
       }
+      stage("Deploiement dans nexus ") {
+     		 steps{
+              // If you are using Windows then you should use "bat" step
+              // Since unit testing is out of the scope we skip them
+      	bat "mvn deploy:deploy-file -DgroupId=com.example -DartifactId=spring-example -Dversion=0.0.1-SNAPSHOT -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=target/spring-example-0.0.1-SNAPSHOT.jar"
+                }
+            }
+	stage('Email Notifications'){
+                 steps{
+                 mail bcc: '', body: '''Hello , 
+                A Build has been executed on Your Project Timesheet , if you notice any bugs or abnormal behaviour please contact your team leader
+                Best Regards , 
+                Ghabri Haifa''', 
+                cc: '', from: '', replyTo: '', subject: 'A Build was executed on timesheet', to: 'haifa.ghabri@esprit.tn'
+             
+                 }
+                 } 
+        	
     }
     stage('Create Image Builder') {
       when {
