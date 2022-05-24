@@ -22,7 +22,7 @@ pipeline {
     stage('Insatll App') {
       steps {
         bat  "mvn install"
-      }
+      }}
       stage("Deploiement dans nexus ") {
      		 steps{
               // If you are using Windows then you should use "bat" step
@@ -41,7 +41,6 @@ pipeline {
                  }
                  } 
         	
-    }
     stage('Create Image Builder') {
       when {
         expression {
