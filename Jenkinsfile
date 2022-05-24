@@ -18,7 +18,7 @@ pipeline {
     stage('Quality Check :: Sonarqube & JaCoCo') {
       steps {
         bat  "mvn sonar:sonar"
-    }
+      }}
     stage('Insatll App') {
       steps {
         bat  "mvn install"
