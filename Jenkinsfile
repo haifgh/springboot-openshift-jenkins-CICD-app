@@ -12,17 +12,17 @@ pipeline {
   stages {     
     stage('Test App') {
       steps {
-        sh "mvn clean test"
+        bat "mvn clean test"
       }
     }
     stage('Quality Check :: Sonarqube & JaCoCo') {
       steps {
-        sh "mvn sonar:sonar -Dsonar.host.url=https://sonar-sibsber1-in.osc-sbx-exp-ap-15768375-f72ef11f3ab089a8c677044eb28292cd-0001.us-east.containers.appdomain.cloud -Dsonar.login=admin -Dsonar.password=admin"
+        bat "mvn sonar:sonar -Dsonar.host.url=https://sonar-sibsber1-in.osc-sbx-exp-ap-15768375-f72ef11f3ab089a8c677044eb28292cd-0001.us-east.containers.appdomain.cloud -Dsonar.login=admin -Dsonar.password=admin"
       }
     }
     stage('Insatll App') {
       steps {
-        sh "mvn install"
+        bat  "mvn install"
       }
     }
     stage('Create Image Builder') {
