@@ -17,8 +17,7 @@ pipeline {
     }
     stage('Quality Check :: Sonarqube & JaCoCo') {
       steps {
-        bat "mvn sonar:sonar -Dsonar.host.url=https://sonar-sibsber1-in.osc-sbx-exp-ap-15768375-f72ef11f3ab089a8c677044eb28292cd-0001.us-east.containers.appdomain.cloud -Dsonar.login=admin -Dsonar.password=admin"
-      }
+        bat  "mvn sonar:sonar"
     }
     stage('Insatll App') {
       steps {
