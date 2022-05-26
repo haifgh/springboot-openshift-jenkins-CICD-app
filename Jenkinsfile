@@ -2,7 +2,17 @@ pipeline {
   agent {
       label 'maven'
   }
-   
+   environment {
+        // This can be nexus3 or nexus2
+        NEXUS_VERSION = "nexus3"
+        // This can be http or https
+        NEXUS_PROTOCOL = "http"
+        // Where your Nexus is running
+        NEXUS_URL = "localhost:8081/Nexus"
+        // Repository where we will upload the artifact
+        NEXUS_REPOSITORY = "Releases"
+    
+    }
  triggers {
        pollSCM('*/5 * * * *')
     }
@@ -27,7 +37,7 @@ pipeline {
      		 steps{
               // If you are using Windows then you should use "bat" step
               // Since unit testing is out of the scope we skip them
-      	bat "mvn deploy:deploy-file -DgroupId=com.example -DartifactId=spring-example -Dversion=0.0.1-SNAPSHOT -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=Jenkins/workspace/mayTest/targetspring-example-0.0.1-SNAPSHOT.jar"
+      	bat "mvn deploy:deploy"
                 }
             }
 	stage('Email Notifications'){
